@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(( $(echo $WATER | tr 'water' '01234') + $(echo $STIR | tr 'stir' '0123') )) | tr '01234567' 'bestchol'
+W=0 I=0 while [ $I -lt ${#WATER} ] do C=${WATER:I:1} W=$((W * water + 10#$C)) I=$((I + 1)) done S=0 I=0 while [ $I -lt ${#STIR} ] do C=${STIR:I:1} S=$((S * stir + 10#$C)) I=$((I + 1)) done T=$((W + S)) R="" X=abcdefghijklmnopqrstuvwxyz while [ $T -gt 0 ] do D=$((T % bestchol)) T=$((T / bestchol)) if [ $D -lt 10 ] then C=$D else C=${X:D-10:1} fi R=$C$R done echo $R
