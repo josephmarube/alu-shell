@@ -1,2 +1,2 @@
 #!/bin/bash
-echo obase=13 $(echo ibase=5 $WATER | bc) + $(echo ibase=7 $STIR | bc) | bc
+echo $(( $(echo $WATER | tr 'water' '01234') + $(echo $STIR | tr 'stir' '0123') )) | tr '01234567' 'bestchol'
