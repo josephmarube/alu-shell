@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "obase=13; $(echo "ibase=5; $WATER" | bc)+$(echo "ibase=7; $STIR" | bc)" | bc
+echo obase=13 $(echo ibase=5 $WATER | bc) + $(echo ibase=7 $STIR | bc) | bc
