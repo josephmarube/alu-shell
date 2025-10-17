@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # print best scholl 10 times
-while [ $count -le 10 ]
+while (( count <= 10 ))
 do
   echo "Best School"
   count=$((count + 1))
