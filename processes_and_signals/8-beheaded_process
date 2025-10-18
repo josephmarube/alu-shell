@@ -10,6 +10,4 @@ fi
 # Check again if it's still running
 if pgrep -f "7-highlander" > /dev/null; then
     echo "./7-highlander is still running"
-else
-    echo "OK"
 fi
