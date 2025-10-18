@@ -1,4 +1,19 @@
 #!/usr/bin/env bash
-# Kill the 7-highlander process
+# Kill 7-highlander and all child processes
 
-killall -f 7-highlander
+# Find the PID of the parent 7-highlander process
+PARENT_PID=$(ps -ef | grep "[7]-highlander" | awk '{print $2}')
+
+# If found, kill the parent and all its child processes
+if [ -n "$PARENT_PID" ]; then
+    # Find all child PIDs recursively
+    CHILD_PIDS=$(pgrep -P "$PARENT_PID")
+    
+    # Kill children first (if any)
+    if [ -n "$CHILD_PIDS" ]; then
+        kill $CHILD_PIDS
+    fi
+    
+    # Kill the parent process
+    kill "$PARENT_PID"
+fi
