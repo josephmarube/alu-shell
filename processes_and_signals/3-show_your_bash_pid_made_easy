@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
-# Display PID and name of bash processes
-for pid_dir in /proc/[0-9]*; do
-  pid="${pid_dir##*/}"
-  # Skip PID 1 and non-readable directories
-  if [ "$pid" -eq 1 ] || [ ! -r "$pid_dir/comm" ]; then
-    continue
-  fi
+# Display PID and name for bash processes
 
-  name=$(<"$pid_dir/comm")
-  if [[ "$name" == bash ]]; then
-    echo "$pid $name"
+for pid in /proc/[0-9]*; do
+  if grep -q "bash" "$pid/comm" 2>/dev/null; then
+    echo "$(basename "$pid") $(cat "$pid/comm")"
   fi
 done
