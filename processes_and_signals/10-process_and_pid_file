@@ -10,5 +10,7 @@ trap 'rm -f "$PID_FILE"; exit' SIGQUIT
 
 while true; do
   echo "To infinity and beyond"
-  sleep 2
+  for i in {1..20}; do
+    sleep 0.1
+  done
 done
