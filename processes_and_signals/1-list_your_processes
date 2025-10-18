@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # Display a list of all currently running processes in a user-oriented hierarchical format
-ps -ejH
+/bin/ps -ejH
