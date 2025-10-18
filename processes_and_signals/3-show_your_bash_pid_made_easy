@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 # Display PID and name of processes containing bash
-grep bash /proc/[0-9]*/comm 2>/dev/null | cut -d/ -f3-
+for pid in /proc/[0-9]*; do
+  if grep -q bash "$pid/comm" 2>/dev/null; then
+    echo "$(basename "$pid") bash"
+  fi
+done
