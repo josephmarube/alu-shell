@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
-# Display PID and name of processes containing bash
+# Display PID and name of bash processes
 for pid_dir in /proc/[0-9]*; do
-  pid="${pid_dir##*/}"        # Extract numeric PID from directory path
-  if [ -r "$pid_dir/comm" ]; then
-    name=$(<"$pid_dir/comm")  # Read the process name
-    if [[ "$name" == *bash* ]]; then
-      echo "$pid $name"
-    fi
+  pid="${pid_dir##*/}"
+  # Skip PID 1 and non-readable directories
+  if [ "$pid" -eq 1 ] || [ ! -r "$pid_dir/comm" ]; then
+    continue
+  fi
+
+  name=$(<"$pid_dir/comm")
+  if [[ "$name" == bash ]]; then
+    echo "$pid $name"
   fi
 done
