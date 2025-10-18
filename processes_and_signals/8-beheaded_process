@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
 # Kill the 7-highlander process
 
-# Find the PID of 7-highlander, ignoring the grep process
-PID=$(ps -ef | grep "[7]-highlander" | awk '{print $2}')
-
-# Kill the process if it exists
-if [ -n "$PID" ]; then
-    kill "$PID"
-fi
+killall -f 7-highlander
