@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
 # Displays all running processes in a user-friendly tree format
 
-exit 0
-
-# The correct command would be:
-# ps -eo user,pid,ppid,%cpu,%mem,vsz,rss,tty,stat,start,time,cmd --forest
+ps faux
